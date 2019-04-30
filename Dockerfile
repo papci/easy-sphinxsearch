@@ -20,6 +20,8 @@ RUN rm /tmp/sphinxsearch.tar.gz
 ENV PATH "${PATH}:/opt/sphinx/sphinx-3.1.1/bin"
 RUN indexer -v
 
+
+
 # redirect logs to stdout
 RUN mkdir /opt/sphinx/log/ 
 RUN ln -sv /dev/stdout /opt/sphinx/log/query.log
@@ -32,4 +34,7 @@ VOLUME /opt/sphinx/conf
 VOLUME /opt/sphinx/data
 VOLUME /opt/sphinx/log
 
+
+# run indexing
+CMD indexer --rotate --all
 CMD searchd --nodetach --config /opt/sphinx/conf/sphinx.conf
