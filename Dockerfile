@@ -14,12 +14,14 @@ RUN   apt install unixodbc-dev -y
 
 
 RUN wget  http://sphinxsearch.com/files/sphinx-3.1.1-612d99f-linux-amd64.tar.gz -O /tmp/sphinxsearch.tar.gz
+RUN mkdir  /opt/sphinx
 RUN cd /opt/sphinx && tar -xf /tmp/sphinxsearch.tar.gz
 RUN rm /tmp/sphinxsearch.tar.gz
 ENV PATH "${PATH}:/opt/sphinx/sphinx-3.1.1/bin"
 RUN indexer -v
 
 # redirect logs to stdout
+RUN mkdir /opt/sphinx/log/ 
 RUN ln -sv /dev/stdout /opt/sphinx/log/query.log
 RUN ln -sv /dev/stdout /opt/sphinx/log/searchd.log
 
@@ -27,5 +29,7 @@ RUN ln -sv /dev/stdout /opt/sphinx/log/searchd.log
 EXPOSE 36307
 
 VOLUME /opt/sphinx/conf
+VOLUME /opt/sphinx/data
+VOLUME /opt/sphinx/log
 
 CMD searchd --nodetach --config /opt/sphinx/conf/sphinx.conf
