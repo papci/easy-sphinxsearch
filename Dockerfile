@@ -36,5 +36,5 @@ VOLUME /opt/sphinx/log
 
 
 # run indexing
-CMD indexer --rotate --all
+CMD indexer --config  /opt/sphinx/conf/sphinx.conf --rotate --all > /opt/sphinx/log/firsttime.log
 CMD searchd --nodetach --config /opt/sphinx/conf/sphinx.conf
