@@ -21,12 +21,6 @@ ENV PATH "${PATH}:/opt/sphinx/sphinx-3.1.1/bin"
 RUN indexer -v
 
 
-
-# redirect logs to stdout
-RUN mkdir /opt/sphinx/log/ 
-RUN ln -sv /dev/stdout /opt/sphinx/log/query.log
-RUN ln -sv /dev/stdout /opt/sphinx/log/searchd.log
-
 # expose TCP port
 EXPOSE 36307
 
