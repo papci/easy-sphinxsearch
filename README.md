@@ -29,7 +29,6 @@ DESCRIPTION=mydatabase
 
 Note that DRIVER=... should be equal to your odbc driver definition located in odbcinst.ini :
 ```
-[nextinpact]
 [ODBC Driver 17 for SQL Server] 
 Description=Microsoft ODBC Driver 17 for SQL Server
 Driver=/opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.3.so.1.1
